@@ -3,13 +3,15 @@ import { css, jsx } from "@emotion/core";
 
 // Components
 import Navbar from "../Navbar/Navbar";
-import LoginForm from "../LoginForm/LoginForm";
+import Container from "../Reusable/Container";
 
 const Hero = () => {
   return (
     <section css={styles} className="hero">
       <Navbar />
-      <LoginForm />
+      <Container>
+        
+      </Container>
     </section>
   );
 };

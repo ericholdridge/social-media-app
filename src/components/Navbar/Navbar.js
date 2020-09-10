@@ -1,18 +1,26 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
+import { Link } from "react-router-dom";
 
 // Components
 import Logo from "../Reusable/Logo/Logo";
 import Container from "../Reusable/Container";
+import { useContext } from "react";
+import { AuthenticationContext } from "../Context/AuthenticationContext";
 
 const Navbar = () => {
+  const { user, handleUserLogout } = useContext(AuthenticationContext);
   return (
     <nav css={styles}>
       <Container>
         <Logo />
         <div>
-          <a href="#!">Profile</a>
-          <a href="#!">Sign up</a>
+          <Link to="/userprofile">Profile</Link>
+          {user ? (
+            <Link to="/" onClick={handleUserLogout}>Log out</Link>
+          ) : (
+            <Link to="/signup">Sign up</Link>
+          )}
         </div>
       </Container>
     </nav>
@@ -40,6 +48,6 @@ const styles = css`
       }
     }
   }
-`
+`;
 
 export default Navbar;

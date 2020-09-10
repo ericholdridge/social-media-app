@@ -8,11 +8,7 @@ export const AuthenticationState = ({ children }) => {
   const [password, setPassword] = useState("");
   const [hasAccount, setHasAccount] = useState(false);
 
-  const clearInputValues = () => {
-    setEmail("");
-    setPassword("");
-  }
-
+  // Handle the user sign up
   const handleUserSignup = (e) => {
     e.preventDefault();
     fire
@@ -22,11 +18,10 @@ export const AuthenticationState = ({ children }) => {
         // Handle Errors here.
         console.log(error);
       });
-    
-    // Clear the input values after the user submits the form
     clearInputValues();
   };
 
+  // Handle the user sign in
   const handleUserSignin = (e) => {
     e.preventDefault();
     fire
@@ -36,6 +31,19 @@ export const AuthenticationState = ({ children }) => {
         // Handle Errors here.
         console.log(error);
       });
+  };
+
+  // Handle the user log out
+  const handleUserLogout = () => {
+    setEmail("");
+    setPassword("");
+    fire.auth().signOut();
+  };
+
+  // Clear the input values after the user signs up
+  const clearInputValues = () => {
+    setEmail("");
+    setPassword("");
   };
 
   return (
@@ -50,7 +58,8 @@ export const AuthenticationState = ({ children }) => {
         hasAccount,
         setHasAccount,
         handleUserSignup,
-        handleUserSignin
+        handleUserSignin,
+        handleUserLogout,
       }}
     >
       {children}
